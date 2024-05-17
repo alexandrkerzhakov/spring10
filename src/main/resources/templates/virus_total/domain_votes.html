@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Domain Votes</title>
+    <meta name="description" content="Domain comments">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="divBody" th:object="${domainVotesInstance}">
+    <div>
+        <h2>IP Comments:</h2>
+        <div th:each="data : ${domainVotesInstance.data}">
+            <div class="divTable">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Type</th>
+                        <th>Self Link</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${data.id}"></td>
+                        <td th:text="${data.type}"></td>
+                        <td th:text="${data.links.self}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <h3>Attributes:</h3>
+                <div class="divTable">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Verdict</th>
+                            <th>Value</th>
+                            <th>Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:text="${data.attributes.verdict}"></td>
+                            <td th:text="${data.attributes.value}"></td>
+                            <td th:text="${data.attributes.date}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h3>Meta:</h3>
+            <div class="divTable">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Count</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${domainVotesInstance.meta.count}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div>
+            <h3>Links:</h3>
+            <div class="divTable">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Self Link</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${domainVotesInstance.links.self}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
+

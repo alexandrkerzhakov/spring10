@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Domain Info</title>
+    <meta name="description" content="Domain information">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="divBody" th:object="${domainInfoInstance}">
+    <div>
+        <h2>Domain Info:</h2>
+        <div class="divTable">
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Type</th>
+                    <th>Self Link</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td th:text="${domainInfoInstance.data.id}"></td>
+                    <td th:text="${domainInfoInstance.data.type}"></td>
+                    <td th:text="${domainInfoInstance.data.links.self}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div>
+            <h2>Attributes:</h2>
+            <div class="divTable">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Tld</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${domainInfoInstance.data.attributes.tld}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <h3>Last DNS Records:</h3>
+                <div class="divTable">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Ttl</th>
+                            <th>Flag</th>
+                            <th>Tag</th>
+                            <th>Value</th>
+                            <th>RName</th>
+                            <th>Serial</th>
+                            <th>Retry</th>
+                            <th>Minimum</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="dnsRecords : ${domainInfoInstance.data.attributes.last_dns_records}">
+                            <td th:text="${dnsRecords.type}"></td>
+                            <td th:text="${dnsRecords.ttl}"></td>
+                            <td th:text="${dnsRecords.flag}"></td>
+                            <td th:text="${dnsRecords.tag}"></td>
+                            <td th:text="${dnsRecords.value}"></td>
+                            <td th:text="${dnsRecords.rname}"></td>
+                            <td th:text="${dnsRecords.refresh}"></td>
+                            <td th:text="${dnsRecords.expire}"></td>
+                            <td th:text="${dnsRecords.minimum}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="divTable">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Tags</th>
+                            <th>Registrar</th>
+                            <th>Last Dns Records Date</th>
+                            <th>Whois Date</th>
+                            <th>Last Analysis Date</th>
+                            <th>Last Modification Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:text="${#strings.arrayJoin(domainInfoInstance.data.attributes.tags, ' ')}"></td>
+                            <td th:text="${domainInfoInstance.data.attributes.registrar}"></td>
+                            <td th:text="${domainInfoInstance.data.attributes.last_dns_records_date}"></td>
+                            <td th:text="${domainInfoInstance.data.attributes.whois_date}"></td>
+                            <td th:text="${domainInfoInstance.data.attributes.last_analysis_date}"></td>
+                            <td th:text="${domainInfoInstance.data.attributes.last_modification_date}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div>
+                    <h3>Last Analysis Stats:</h3>
+                    <div class="divTable">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Malicious</th>
+                                <th>Suspicious</th>
+                                <th>Undetected</th>
+                                <th>Harmless</th>
+                                <th>Timeout</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td th:text="${domainInfoInstance.data.attributes.last_analysis_stats.malicious}"></td>
+                                <td th:text="${domainInfoInstance.data.attributes.last_analysis_stats.suspicious}"></td>
+                                <td th:text="${domainInfoInstance.data.attributes.last_analysis_stats.undetected}"></td>
+                                <td th:text="${domainInfoInstance.data.attributes.last_analysis_stats.harmless}"></td>
+                                <td th:text="${domainInfoInstance.data.attributes.last_analysis_stats.timeout}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+                <div>
+                    <h3>Last Analysis Results:</h3>
+                    <div class="divTable">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Engine Name</th>
+                                <th>Method</th>
+                                <th>Engine Name</th>
+                                <th>Category</th>
+                                <th>Result</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="result : ${domainInfoInstance.data.attributes.last_analysis_results}">
+                                <td th:text="${result.key}"></td>
+                                <td th:text="${result.value.method}"></td>
+                                <td th:text="${result.value.engine_name}"></td>
+                                <td th:text="${result.value.category}"></td>
+                                <td th:text="${result.value.result}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

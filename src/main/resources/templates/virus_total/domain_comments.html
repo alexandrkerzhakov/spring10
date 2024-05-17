@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Domain Comments</title>
+    <meta name="description" content="Domain comments">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="divBody" th:object="${domainCommentsInstance}">
+    <div>
+        <h2>IP Comments:</h2>
+        <div th:each="data : ${domainCommentsInstance.data}">
+            <div class="divTable">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Type</th>
+                        <th>Self Link</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${data.id}"></td>
+                        <td th:text="${data.type}"></td>
+                        <td th:text="${data.links.self}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <h3>Attributes:</h3>
+                <div class="divTable">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>HTML</th>
+                            <th>Text</th>
+                            <th>Date</th>
+                            <th>Tags</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:text="${data.attributes.html}"></td>
+                            <td th:text="${data.attributes.text}"></td>
+                            <td th:text="${data.attributes.date}"></td>
+                            <td th:text="${#strings.arrayJoin(data.attributes.tags, ' ')}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div>
+                    <h3>Votes:</h3>
+                    <div class="divTable">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Positive</th>
+                                <th>Negative</th>
+                                <th>Abuse</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td th:text="${data.attributes.votes.positive}"></td>
+                                <td th:text="${data.attributes.votes.negative}"></td>
+                                <td th:text="${data.attributes.votes.abuse}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h2>Meta:</h2>
+                <div class="divTable">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Count</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:text="${domainCommentsInstance.meta.count}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div>
+                <h2>Links:</h2>
+                <div class="divTable">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Self Link</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:text="${domainCommentsInstance.links.self}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
